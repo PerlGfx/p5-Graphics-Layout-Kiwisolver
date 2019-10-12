@@ -1,3 +1,6 @@
 requires 'Renard::Incunabula',
 	git => 'https://github.com/project-renard/p5-Renard-Incunabula.git',
 	branch => 'master';
+requires 'Alien::Kiwisolver',
+	git => 'https://github.com/project-renard/p5-Alien-Kiwisolver.git',
+	branch => 'master';
