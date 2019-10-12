@@ -19,6 +19,7 @@ override _build_WriteMakefile_args => sub { +{
 		%{ super() },
 		BIN_DEPS  => ['XS::Framework'],
 		PARSE_XS  => 'XS::Framework::ParseXS',
+		CPLUS   => 11,
 } };
 
 override _build_WriteMakefile_dump => sub {
@@ -28,7 +29,7 @@ $WriteMakefileArgs{CONFIGURE} = sub {
 	require Alien::Kiwisolver;
 	my $k = Alien::Kiwisolver->new;
 	+{
-		CCFLAGS => join(" ", $k->cflags, '-Wno-deprecated-declarations'),
+		CCFLAGS => join(" ", $k->cflags, '-std=c++11'),
 		LIBS => $k->libs
 	};
 };
