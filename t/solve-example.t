@@ -1,13 +1,15 @@
 #!/usr/bin/env perl
 
-use Test::Most tests => 1;
+use Test::Most;
+
+plan tests => 1;
 
 use Renard::Incunabula::Common::Setup;
 use Renard::API::Kiwisolver;
-use aliased qw(
-	Renard::API::Kiwisolver::Variable
-	Renard::API::Kiwisolver::Solver
-);
+use constant {
+	Variable => 'Renard::API::Kiwisolver::Variable',
+	Solver => 'Renard::API::Kiwisolver::Solver'
+};
 
 use lib 't/lib';
 
@@ -35,9 +37,9 @@ subtest "Test solver" => fun() {
 		$solver->addConstraint($cn);
 	}
 
-	$solver->addConstraint( ($x1 == 40) | "weak" );
+	$solver->addConstraint( ($x1 == 40) | Renard::API::Kiwisolver::Strength::WEAK );
 
-	$solver->addEditVariable($xm, 'strong');
+	$solver->addEditVariable($xm, Renard::API::Kiwisolver::Strength::STRONG );
 
 	$solver->suggestValue($xm, 60);
 	$solver->updateVariables;
