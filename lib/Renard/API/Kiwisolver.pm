@@ -2,6 +2,7 @@ use Renard::Incunabula::Common::Setup;
 package Renard::API::Kiwisolver;
 # ABSTRACT: API for Kiwisolver constraint solver
 
+use XS::Framework;
 use XS::Loader;
 XS::Loader::load();
 
