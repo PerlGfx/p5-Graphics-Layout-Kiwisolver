@@ -27,9 +27,13 @@ override _build_WriteMakefile_dump => sub {
 	$str .= <<'END';
 $WriteMakefileArgs{CONFIGURE} = sub {
 	require Alien::Kiwisolver;
+	require Config;
 	my $k = Alien::Kiwisolver->new;
 	+{
-		CCFLAGS => join(" ", $k->cflags, '-std=c++14'),
+		CCFLAGS => join(" ",
+			$Config::Config{ccflags},
+			$k->cflags, '-std=c++14',
+		),
 		LIBS => $k->libs
 	};
 };
