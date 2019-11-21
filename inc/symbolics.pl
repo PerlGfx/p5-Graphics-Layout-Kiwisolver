@@ -157,6 +157,11 @@ EOF
 			if(  is_op_binary($op_key) ) {
 			# Binary
 			my @branches;
+			push @branches, <<EOF;
+if( ! b.defined() ) {
+	throw std::invalid_argument( "$namespace: operation @{[ $ops_cpp_to_perl{ $op_key }{overload} ]} with undef operand" );
+}
+EOF
 			for my $dyn (@dispatch_op) {
 				my $dyn_type = $dyn->{Params}[1]{Type};
 				my $ret_type = $dyn->{ReturnType};

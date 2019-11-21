@@ -10,6 +10,23 @@ subtest "Test symbolics" => fun() {
 	my $y = Renard::API::Kiwisolver::Variable->new('y');
 	my $z = Renard::API::Kiwisolver::Variable->new('z');
 
+	my $exception = qr/std::invalid_argument/;
+	my $undef = undef;
+	throws_ok { my $r = $x + $undef } $exception, 'exception: Variable + undef';
+	throws_ok { my $r = $undef + $x } $exception, 'exception: undef + Variable';
+	throws_ok { my $r = $x - $undef } $exception, 'exception: Variable - undef';
+	throws_ok { my $r = $undef - $x } $exception, 'exception: undef - Variable';
+	throws_ok { my $r = $x * $undef } $exception, 'exception: Variable * undef';
+	throws_ok { my $r = $undef * $x } $exception, 'exception: undef * Variable';
+
+	throws_ok { my $r = 2*$x + $undef } $exception, 'exception: Term + undef';
+	throws_ok { my $r = $undef + 2*$x } $exception, 'exception: undef + Term';
+	throws_ok { my $r = (2*$x) * $undef } $exception, 'exception: Term * undef';
+	throws_ok { my $r = $undef * (2*$x) } $exception, 'exception: undef * Term';
+
+	throws_ok { my $r = (2*$x + $y / 2) + $undef } $exception, 'exception: Expression + undef';
+	throws_ok { my $r = $undef + (2*$x + $y / 2) + $undef } $exception, 'exception: Expression + undef';
+
 	isa_ok $x + 5,  'Renard::API::Kiwisolver::Expression', 'Variable + double';
 	isa_ok $x - 5,  'Renard::API::Kiwisolver::Expression', 'Variable - double';
 	isa_ok 5 + $x,  'Renard::API::Kiwisolver::Expression', 'double + Variable';
