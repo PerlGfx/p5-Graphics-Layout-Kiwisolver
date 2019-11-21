@@ -116,15 +116,9 @@ sub is_op_binary {
 
 sub op_proto {
 	my ($op, $type) = @_;
-	if( is_op_binary($op) ) {
-		print <<"EOF";
+	print <<"EOF";
 SV* @{[ $ops_cpp_to_perl{ $op }{name} ]} ( @{[ type_to_kiwi_CPP($type) ]}* a, Sv b, bool swap ) : OVERLOAD(@{[ $ops_cpp_to_perl{ $op }{overload} ]}) {
 EOF
-	} else {
-		print <<"EOF";
-SV* @{[ $ops_cpp_to_perl{ $op }{name} ]} ( @{[ type_to_kiwi_CPP($type) ]}* a ) : OVERLOAD(@{[ $ops_cpp_to_perl{ $op }{overload} ]}) {
-EOF
-	}
 }
 
 sub main {
@@ -161,7 +155,13 @@ EOF
 			op_proto( $op_key, $type );
 
 			if(  is_op_binary($op_key) ) {
+			# Binary
 			my @branches;
+			push @branches, <<EOF;
+if( ! b.defined() ) {
+	throw std::invalid_argument( "$namespace: operation @{[ $ops_cpp_to_perl{ $op_key }{overload} ]} with undef operand" );
+}
+EOF
 			for my $dyn (@dispatch_op) {
 				my $dyn_type = $dyn->{Params}[1]{Type};
 				my $ret_type = $dyn->{ReturnType};
@@ -200,12 +200,26 @@ EOF
 				push @branches, $branch;
 			}
 			say join "\n\telse\n", map { s/^/\t/mgr } @branches;
-		} else {
-			say "\t// TODO unary";
-		}
+			} else {
+			# Unary
+			my $dyn = $dispatch_op[0];
+			my $ret_type = $dyn->{ReturnType};
+			my $branch = "";
+			$branch .= "// @{[ $dyn->{line} ]}" . "\n";
+			$branch .= join " ", (
+				"@{[ type_to_kiwi_CPP($ret_type) ]}* result",
+				"=",
+				"new @{[ @{[ type_to_kiwi_CPP($ret_type) ]} ]} (",
+					"@{[ $ops_cpp_to_perl{$op_key}{cpp} ]}",
+					"(*a)",
+				");\n",
+			);
+			$branch .= "RETVAL = xs::out<@{[ type_to_kiwi_CPP($ret_type) ]}*>(result, NULL).detach();";
+			$branch =~ s/^/\t/mg;
+			say $branch;
+			}
 
-		say "}\n";
-
+			say "}\n";
 		}
 	}
 }
