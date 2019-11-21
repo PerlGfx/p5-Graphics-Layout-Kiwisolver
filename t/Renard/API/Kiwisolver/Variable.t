@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-use Test::Most tests => 3;
+use Test::Most tests => 4;
 
 use Renard::Incunabula::Common::Setup;
 use Renard::API::Kiwisolver;
@@ -32,6 +32,16 @@ subtest "Add operators" => fun() {
 	$y->setValue(6);
 	my $t = $x + $y;
 	is $t->value, 11, 'add up values';
+};
+
+subtest "Stringify" => fun() {
+	my $x = Variable->new('x');
+	$x->setValue(42);
+	my $whatever = Variable->new;
+	$whatever->setValue(32);
+
+	is "$x", '(x : 42)';
+	is "$whatever", '([unnamed] : 32)';
 };
 
 done_testing;
