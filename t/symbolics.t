@@ -15,14 +15,17 @@ subtest "Test symbolics" => fun() {
 	isa_ok 5 + $x,  'Renard::API::Kiwisolver::Expression', 'double + Variable';
 	isa_ok 5 - $x,  'Renard::API::Kiwisolver::Expression', 'double - Variable';
 
+	isa_ok -$x,  'Renard::API::Kiwisolver::Term', '- Variable (unary)';
+
 	isa_ok 2 * $x,  'Renard::API::Kiwisolver::Term', 'double * Variable';
 	isa_ok $x * 2,  'Renard::API::Kiwisolver::Term', 'Variable * double';
 
-	#isa_ok -$x,  'Renard::API::Kiwisolver::Term', '- Variable (unary)';
 	isa_ok $y / 2,  'Renard::API::Kiwisolver::Term', 'Variable / double';
 
 	isa_ok $x + $y, 'Renard::API::Kiwisolver::Expression', 'Variable + Variable';
 	isa_ok $x - $y, 'Renard::API::Kiwisolver::Expression', 'Variable - Variable';
+
+	isa_ok -(2 * $x),  'Renard::API::Kiwisolver::Term', '- Term (unary)';
 
 	isa_ok 2 * $x + $y / 2, 'Renard::API::Kiwisolver::Expression', 'Term + Term';
 	isa_ok 2 * $x - $y / 2, 'Renard::API::Kiwisolver::Expression', 'Term - Term';
@@ -33,6 +36,9 @@ subtest "Test symbolics" => fun() {
 	isa_ok 3 - 2 * $x, 'Renard::API::Kiwisolver::Expression', 'double - Term';
 
 	isa_ok 2 * $x / 3,  'Renard::API::Kiwisolver::Term', 'Term / double';
+
+	isa_ok -(2 * $x + $y / 2),  'Renard::API::Kiwisolver::Expression', '- Expression (unary)';
+
 	isa_ok( (2 * $x + $y / 2) / 3,  'Renard::API::Kiwisolver::Expression', 'Expression / double');
 
 	isa_ok 0 == 2 * $x + $y / 2, 'Renard::API::Kiwisolver::Constraint', 'double == Expression';
