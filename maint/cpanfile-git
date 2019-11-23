@@ -3,4 +3,4 @@ requires 'Renard::Incunabula',
 	branch => 'master';
 requires 'Alien::Kiwisolver',
 	git => 'https://github.com/project-renard/p5-Alien-Kiwisolver.git',
-	branch => 'shared-ref';
+	branch => 'master';
