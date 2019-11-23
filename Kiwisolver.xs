@@ -3,6 +3,8 @@ using namespace xs;
 
 #include <kiwi/kiwi.h>
 
+#include "Refcnt.xsi"
+
 MODULE = Renard::API::Kiwisolver                PACKAGE = Renard::API::Kiwisolver
 PROTOTYPES: DISABLE
 
