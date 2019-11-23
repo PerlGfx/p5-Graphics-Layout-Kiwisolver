@@ -6,7 +6,7 @@ use overload "fallback" => 0, '""' => \&stringify;
 
 sub stringify {
 	my ($self) = @_;
-	"(@{[ $self->name ]} : @{[ $self->value ]})"
+	"(@{[ $self->name || '[unnamed]' ]} : @{[ $self->value ]})"
 }
 
 1;

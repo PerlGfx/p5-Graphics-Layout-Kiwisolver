@@ -5,7 +5,7 @@ MODE: INLINE
 
 namespace xs {
     template <>
-    struct Typemap<kiwi::Variable*> : TypemapObject<kiwi::Variable*, kiwi::Variable*, ObjectTypePtr, ObjectStorageMG, StaticCast> {
+    struct Typemap<kiwi::Variable*> : TypemapObject<kiwi::Variable*, kiwi::Variable*, ObjectTypeRefcntPtr, ObjectStorageMG, StaticCast> {
         static std::string package () { return "Renard::API::Kiwisolver::Variable"; }
     };
 }

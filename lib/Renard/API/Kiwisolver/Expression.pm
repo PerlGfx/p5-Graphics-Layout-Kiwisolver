@@ -7,8 +7,7 @@ use overload "fallback" => 0, '""' => \&stringify;
 sub stringify {
 	my ($self) = @_;
 	"(@{[ $self->constant ]} + "
-	.  " TERMS "
-	#.  join(" + ", map { "$_" } @{ $self->terms })
+	.  join(" + ", map { "$_" } @{ $self->terms })
 	. " : @{[ $self->value ]})"
 }
 
