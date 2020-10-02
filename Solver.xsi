@@ -6,11 +6,11 @@ MODE: INLINE
 namespace xs {
     template <>
     struct Typemap<kiwi::Solver*> : TypemapObject<kiwi::Solver*, kiwi::Solver*, ObjectTypePtr, ObjectStorageMG, StaticCast> {
-        static std::string package () { return "Renard::API::Kiwisolver::Solver"; }
+        static std::string package () { return "Intertangle::API::Kiwisolver::Solver"; }
     };
 }
 
-MODULE = Renard::API::Kiwisolver                PACKAGE = Renard::API::Kiwisolver::Solver
+MODULE = Intertangle::API::Kiwisolver                PACKAGE = Intertangle::API::Kiwisolver::Solver
 PROTOTYPES: DISABLE
 
 kiwi::Solver* kiwi::Solver::new() { RETVAL = new kiwi::Solver(); }

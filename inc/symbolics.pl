@@ -10,7 +10,7 @@ use File::Spec;
 use Alien::Kiwisolver;
 use List::UtilsBy qw(nsort_by);
 
-my $namespace = "Renard::API::Kiwisolver";
+my $namespace = "Intertangle::API::Kiwisolver";
 
 my @types = (
 	"double",

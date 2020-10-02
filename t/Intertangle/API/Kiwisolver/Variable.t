@@ -3,8 +3,8 @@
 use Test::Most tests => 4;
 
 use Renard::Incunabula::Common::Setup;
-use Renard::API::Kiwisolver;
-use aliased 'Renard::API::Kiwisolver::Variable';
+use Intertangle::API::Kiwisolver;
+use aliased 'Intertangle::API::Kiwisolver::Variable';
 
 subtest "Create variable" => fun() {
 	my $x = Variable->new('x');

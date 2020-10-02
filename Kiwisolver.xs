@@ -5,11 +5,11 @@ using namespace xs;
 
 #include "Refcnt.xsi"
 
-MODULE = Renard::API::Kiwisolver                PACKAGE = Renard::API::Kiwisolver
+MODULE = Intertangle::API::Kiwisolver                PACKAGE = Intertangle::API::Kiwisolver
 PROTOTYPES: DISABLE
 
 BOOT {
-	Stash(__PACKAGE__, GV_ADD).mark_as_loaded("Renard::API::Kiwisolver");
+	Stash(__PACKAGE__, GV_ADD).mark_as_loaded("Intertangle::API::Kiwisolver");
 }
 
 INCLUDE: Variable.xsi

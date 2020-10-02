@@ -1,5 +1,5 @@
 use Renard::Incunabula::Common::Setup;
-package Renard::API::Kiwisolver::Constraint;
+package Intertangle::API::Kiwisolver::Constraint;
 # ABSTRACT: Kiwisolver constraint
 
 use overload "fallback" => 0, '""' => \&stringify;

@@ -1,5 +1,5 @@
 use Renard::Incunabula::Common::Setup;
-package Renard::API::Kiwisolver::Strength;
+package Intertangle::API::Kiwisolver::Strength;
 # ABSTRACT: Constraint/Variable strength
 
 

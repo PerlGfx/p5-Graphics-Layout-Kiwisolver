@@ -3,7 +3,7 @@
 use Test::Most tests => 1;
 
 use Renard::Incunabula::Common::Setup;
-use Renard::API::Kiwisolver;
+use Intertangle::API::Kiwisolver;
 
 fun star($solver, $n, $z) {
 	die unless $n >= 1;
@@ -12,29 +12,29 @@ fun star($solver, $n, $z) {
 	note 'Each input variable \(x_i\) has a medium stay.';
 	note 'And each output variable \(y_i\) has a weak stay.';
 	for my $i (1..$n) {
-		push @{$vars{x}}, my $x_i = Renard::API::Kiwisolver::Variable->new("x_${i}");
-		push @{$vars{y}}, my $y_i = Renard::API::Kiwisolver::Variable->new("y_${i}");
+		push @{$vars{x}}, my $x_i = Intertangle::API::Kiwisolver::Variable->new("x_${i}");
+		push @{$vars{y}}, my $y_i = Intertangle::API::Kiwisolver::Variable->new("y_${i}");
 
-		$solver->addEditVariable($x_i, Renard::API::Kiwisolver::Strength::STRONG );
-		$solver->addEditVariable($y_i, Renard::API::Kiwisolver::Strength::WEAK   );
+		$solver->addEditVariable($x_i, Intertangle::API::Kiwisolver::Strength::STRONG );
+		$solver->addEditVariable($y_i, Intertangle::API::Kiwisolver::Strength::WEAK   );
 		$solver->suggestValue($x_i, $i);
 
 		$solver->addConstraint(
 			( $y_i == $x_i + $z )
-			| Renard::API::Kiwisolver::Strength::REQUIRED
+			| Intertangle::API::Kiwisolver::Strength::REQUIRED
 		);
 	}
 	\%vars;
 }
 
 subtest "Star benchmark" => fun() {
-	my $solver = Renard::API::Kiwisolver::Solver->new;
+	my $solver = Intertangle::API::Kiwisolver::Solver->new;
 	my $n = 100;
-	my $z = Renard::API::Kiwisolver::Variable->new('z');
+	my $z = Intertangle::API::Kiwisolver::Variable->new('z');
 	my $vars = star($solver, $n, $z);
 
 	note 'Add a strong edit constraint to the offset \(z\)';
-	$solver->addEditVariable($z, Renard::API::Kiwisolver::Strength::STRONG );
+	$solver->addEditVariable($z, Intertangle::API::Kiwisolver::Strength::STRONG );
 
 	$solver->updateVariables;
 	is $vars->{y}[-1]->value, $n, "@{[ $vars->{y}[-1]->name ]} initially $n";
