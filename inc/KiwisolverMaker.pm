@@ -3,6 +3,12 @@ use Moose;
 
 extends 'Dist::Zilla::Plugin::MakeMaker::Awesome';
 
+has '+eumm_version' => (
+	default => sub {
+		'7.1101',
+	},
+);
+
 override _build_MakeFile_PL_template => sub {
 	my ($self) = @_;
 	my $template = super();
