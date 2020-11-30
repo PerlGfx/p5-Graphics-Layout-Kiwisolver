@@ -29,9 +29,8 @@ jobs:
                   $ORBITAL_LAUNCH_SITE_DIR
           export PATH="$ORBITAL_LAUNCH_SITE_DIR"/vendor/p5-Orbital-Launch/bin:$PATH
           echo "$ORBITAL_LAUNCH_SITE_DIR"/vendor/p5-Orbital-Launch/bin >> $GITHUB_PATH
-          perl -S orbitalism bootstrap auto
       - name: Use Orbital Transfer
-        shell: bash
         run: |
+          perl -S orbitalism bootstrap auto
           perl -S orbitalism
           perl -S orbitalism test
