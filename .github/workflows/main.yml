@@ -10,12 +10,19 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-sh:
+  build:
+    name: ${{ matrix.os }} ${{ matrix.joblabel }}
     runs-on: ${{ matrix.os }}
+    env:
+      ORBITAL_COVERAGE:    ${{ matrix.coverage }}
     strategy:
       fail-fast: false
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
+        include:
+          - os: 'ubuntu-latest'
+            coverage: coveralls
+            joblabel: '(Coverage)'
     steps:
       - uses: actions/checkout@v2
       - name: Set up Orbital Transfer
