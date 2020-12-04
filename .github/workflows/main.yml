@@ -31,6 +31,8 @@ jobs:
         run: |
           eval "$(curl https://raw.githubusercontent.com/orbital-transfer/launch-site/master/script/ci/github-actions-orbital.sh)"
       - name: Use Orbital Transfer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           perl -S orbitalism bootstrap auto
           perl -S orbitalism
