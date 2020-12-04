@@ -19,6 +19,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
+        coverage: ~
         include:
           - os: 'ubuntu-latest'
             coverage: coveralls
