@@ -10,32 +10,29 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build-sh:
+  build:
+    name: ${{ matrix.os }} ${{ matrix.joblabel }}
     runs-on: ${{ matrix.os }}
+    env:
+      ORBITAL_COVERAGE:    ${{ matrix.coverage }}
     strategy:
       fail-fast: false
       matrix:
         os: [macos-latest, windows-latest, ubuntu-latest]
+        coverage: ['']
+        include:
+          - os: 'ubuntu-latest'
+            coverage: coveralls
+            joblabel: '(Coverage)'
     steps:
       - uses: actions/checkout@v2
       - name: Set up Orbital Transfer
         shell: bash
         run: |
-          cd $GITHUB_WORKSPACE
-          export ORBITAL_LAUNCH_SITE_DIR=$(cd .. && pwd)/_orbital/external/orbital-transfer/launch-site
-          export ORBITAL_TEST_DIR=$GITHUB_WORKSPACE
-          git clone --recursive \
-                  https://github.com/orbital-transfer/launch-site.git \
-                  $ORBITAL_LAUNCH_SITE_DIR
-          export ORBITAL_LAUNCH_BIN="$ORBITAL_LAUNCH_SITE_DIR"/vendor/p5-Orbital-Launch/bin
-          export PATH=$ORBITAL_LAUNCH_BIN:$PATH
-          if [ "$RUNNER_OS" == "Windows" ]; then
-            echo $(cygpath -w  $ORBITAL_LAUNCH_BIN) >> $GITHUB_PATH
-          else
-            echo $ORBITAL_LAUNCH_BIN >> $GITHUB_PATH
-          fi
-          cat $GITHUB_PATH
+          eval "$(curl https://raw.githubusercontent.com/orbital-transfer/launch-site/master/script/ci/github-actions-orbital.sh)"
       - name: Use Orbital Transfer
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           perl -S orbitalism bootstrap auto
           perl -S orbitalism
