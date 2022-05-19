@@ -5,10 +5,10 @@ use Test::Most;
 plan tests => 1;
 
 use Renard::Incunabula::Common::Setup;
-use Intertangle::API::Kiwisolver;
+use Graphics::Layout::Kiwisolver;
 use constant {
-	Variable => 'Intertangle::API::Kiwisolver::Variable',
-	Solver => 'Intertangle::API::Kiwisolver::Solver'
+	Variable => 'Graphics::Layout::Kiwisolver::Variable',
+	Solver => 'Graphics::Layout::Kiwisolver::Solver'
 };
 
 use lib 't/lib';
@@ -37,9 +37,9 @@ subtest "Test solver" => fun() {
 		$solver->addConstraint($cn);
 	}
 
-	$solver->addConstraint( ($x1 == 40) | Intertangle::API::Kiwisolver::Strength::WEAK );
+	$solver->addConstraint( ($x1 == 40) | Graphics::Layout::Kiwisolver::Strength::WEAK );
 
-	$solver->addEditVariable($xm, Intertangle::API::Kiwisolver::Strength::STRONG );
+	$solver->addEditVariable($xm, Graphics::Layout::Kiwisolver::Strength::STRONG );
 
 	$solver->suggestValue($xm, 60);
 	$solver->updateVariables;

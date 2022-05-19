@@ -3,10 +3,10 @@
 use Test::Most tests => 1;
 
 use Renard::Incunabula::Common::Setup;
-use Intertangle::API::Kiwisolver;
+use Graphics::Layout::Kiwisolver;
 
 fun tree($solver, $n, $leaves) {
-	my $node = Intertangle::API::Kiwisolver::Variable->new;
+	my $node = Graphics::Layout::Kiwisolver::Variable->new;
 
 	if( $n > 1 ) {
 		# The value at each interior node is constrained to be the sum
@@ -17,7 +17,7 @@ fun tree($solver, $n, $leaves) {
 		$solver->addConstraint($node == $left + $right);
 	} else {
 		# There is also a weak stay constraint on each leaf.
-		$solver->addEditVariable($node, Intertangle::API::Kiwisolver::Strength::WEAK );
+		$solver->addEditVariable($node, Graphics::Layout::Kiwisolver::Strength::WEAK );
 		$solver->suggestValue($node, 1);
 		$node->setName("leaf_@{[ scalar @$leaves ]}");
 		push @$leaves, $node;
@@ -27,7 +27,7 @@ fun tree($solver, $n, $leaves) {
 }
 
 subtest "Tree benchmark" => fun() {
-	my $solver = Intertangle::API::Kiwisolver::Solver->new;
+	my $solver = Graphics::Layout::Kiwisolver::Solver->new;
 	my $n = 10;
 	my $leaves = [];
 	my $root = tree($solver, $n, $leaves);
@@ -37,7 +37,7 @@ subtest "Tree benchmark" => fun() {
 	is $root->value, 2**($n-1), 'initial solution';
 
 	# We then add a strong edit constraint to the root.
-	$solver->addEditVariable($root, Intertangle::API::Kiwisolver::Strength::STRONG );
+	$solver->addEditVariable($root, Graphics::Layout::Kiwisolver::Strength::STRONG );
 
 	# Change value of root one time.
 	my $new_value = 2**$n;

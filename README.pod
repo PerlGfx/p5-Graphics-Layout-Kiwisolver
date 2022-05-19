@@ -4,7 +4,7 @@
 
 =head1 NAME
 
-Intertangle::API::Kiwisolver - API for Kiwisolver constraint solver
+Graphics::Layout::Kiwisolver - API for Kiwisolver constraint solver
 
 =head1 VERSION
 

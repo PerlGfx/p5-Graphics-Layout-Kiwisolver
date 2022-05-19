@@ -6,11 +6,11 @@ MODE: INLINE
 namespace xs {
     template <>
     struct Typemap<kiwi::Variable*> : TypemapObject<kiwi::Variable*, kiwi::Variable*, ObjectTypeRefcntPtr, ObjectStorageMG, StaticCast> {
-        static std::string package () { return "Intertangle::API::Kiwisolver::Variable"; }
+        static std::string package () { return "Graphics::Layout::Kiwisolver::Variable"; }
     };
 }
 
-MODULE = Intertangle::API::Kiwisolver                PACKAGE = Intertangle::API::Kiwisolver::Variable
+MODULE = Graphics::Layout::Kiwisolver                PACKAGE = Graphics::Layout::Kiwisolver::Variable
 PROTOTYPES: DISABLE
 
 kiwi::Variable* kiwi::Variable::new( std::string name = "" ) {

@@ -3,7 +3,7 @@ MODE: INLINE
 #include <xs.h>
 #include <kiwi/kiwi.h>
 
-MODULE = Intertangle::API::Kiwisolver                PACKAGE = Intertangle::API::Kiwisolver::Strength
+MODULE = Graphics::Layout::Kiwisolver                PACKAGE = Graphics::Layout::Kiwisolver::Strength
 PROTOTYPES: DISABLE
 
 double create( double a, double b, double c, double w = 1.0 ) {

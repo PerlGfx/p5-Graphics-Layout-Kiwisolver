@@ -6,11 +6,11 @@ MODE: INLINE
 namespace xs {
     template <>
     struct Typemap<kiwi::Constraint*> : TypemapObject<kiwi::Constraint*, kiwi::Constraint*, ObjectTypeRefcntPtr, ObjectStorageMG, StaticCast> {
-        static std::string package () { return "Intertangle::API::Kiwisolver::Constraint"; }
+        static std::string package () { return "Graphics::Layout::Kiwisolver::Constraint"; }
     };
 }
 
-MODULE = Intertangle::API::Kiwisolver                PACKAGE = Intertangle::API::Kiwisolver::Constraint
+MODULE = Graphics::Layout::Kiwisolver                PACKAGE = Graphics::Layout::Kiwisolver::Constraint
 PROTOTYPES: DISABLE
 
 kiwi::Expression* kiwi::Constraint::expression() {

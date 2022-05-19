@@ -3,15 +3,15 @@
 use Test::Most tests => 1;
 
 use Renard::Incunabula::Common::Setup;
-use Intertangle::API::Kiwisolver;
+use Graphics::Layout::Kiwisolver;
 
 package Node {
 	use Mu;
-	use Intertangle::API::Kiwisolver::Variable;
+	use Graphics::Layout::Kiwisolver::Variable;
 	has [qw(x y)] => (
 		is => 'ro',
 		default => sub() {
-			Intertangle::API::Kiwisolver::Variable->new;
+			Graphics::Layout::Kiwisolver::Variable->new;
 		}
 	);
 
@@ -22,7 +22,7 @@ package SolverWithCount {
 	use Mu;
 	use MooX::InsideOut;
 	use MooX::HandlesVia;
-	extends qw(Intertangle::API::Kiwisolver::Solver);
+	extends qw(Graphics::Layout::Kiwisolver::Solver);
 	use Data::Perl qw/counter/;
 
 	ro _count => (
@@ -83,11 +83,11 @@ subtest "Test" => fun() {
 		width => 600,
 		height => 150,
 		inset => 10,
-		spacing => Intertangle::API::Kiwisolver::Variable->new,
+		spacing => Graphics::Layout::Kiwisolver::Variable->new,
 	};
 
 	my $levels = 7;
-	my $sep = Intertangle::API::Kiwisolver::Variable->new;
+	my $sep = Graphics::Layout::Kiwisolver::Variable->new;
 
 	$solver->addConstraint( $sep >= 4+1 );
 	$solver->addConstraint( $context->{spacing} >= 20 );
@@ -98,8 +98,8 @@ subtest "Test" => fun() {
 
 	depth_overlap($solver, $root, $sep);
 
-	$solver->addEditVariable($root->x, Intertangle::API::Kiwisolver::Strength::STRONG );
-	$solver->addEditVariable($root->y, Intertangle::API::Kiwisolver::Strength::STRONG );
+	$solver->addEditVariable($root->x, Graphics::Layout::Kiwisolver::Strength::STRONG );
+	$solver->addEditVariable($root->y, Graphics::Layout::Kiwisolver::Strength::STRONG );
 	$solver->suggestValue( $root->x, $context->{width}  / 2 );
 	$solver->suggestValue( $root->y, 10 );
 

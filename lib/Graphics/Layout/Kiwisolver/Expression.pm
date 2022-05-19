@@ -1,5 +1,5 @@
 use Renard::Incunabula::Common::Setup;
-package Intertangle::API::Kiwisolver::Expression;
+package Graphics::Layout::Kiwisolver::Expression;
 # ABSTRACT: Kiwisolver expression
 
 use overload "fallback" => 0, '""' => \&stringify;
