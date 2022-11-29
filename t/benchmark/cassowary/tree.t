@@ -2,10 +2,12 @@
 
 use Test::Most tests => 1;
 
-use Renard::Incunabula::Common::Setup;
+use strict;
+use warnings;
 use Graphics::Layout::Kiwisolver;
 
-fun tree($solver, $n, $leaves) {
+sub tree {
+	my ($solver, $n, $leaves) = @_;
 	my $node = Graphics::Layout::Kiwisolver::Variable->new;
 
 	if( $n > 1 ) {
@@ -26,7 +28,7 @@ fun tree($solver, $n, $leaves) {
 	$node;
 }
 
-subtest "Tree benchmark" => fun() {
+subtest "Tree benchmark" => sub {
 	my $solver = Graphics::Layout::Kiwisolver::Solver->new;
 	my $n = 10;
 	my $leaves = [];

@@ -2,10 +2,11 @@
 
 use Test::Most tests => 1;
 
-use Renard::Incunabula::Common::Setup;
+use strict;
+use warnings;
 use Graphics::Layout::Kiwisolver;
 
-subtest "Expression stringify" => fun() {
+subtest "Expression stringify" => sub {
 	my $x = Graphics::Layout::Kiwisolver::Variable->new('x');
 	$x->setValue(1);
 	my $y = Graphics::Layout::Kiwisolver::Variable->new('y');

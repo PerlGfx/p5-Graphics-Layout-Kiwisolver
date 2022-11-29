@@ -2,10 +2,12 @@
 
 use Test::Most tests => 1;
 
-use Renard::Incunabula::Common::Setup;
+use strict;
+use warnings;
 use Graphics::Layout::Kiwisolver;
 
-fun chain($solver, $n) {
+sub chain {
+	my ($solver, $n) = @_;
 	die unless $n >= 1;
 	my @vars;
 	push @vars, Graphics::Layout::Kiwisolver::Variable->new("x_1");
@@ -26,7 +28,7 @@ EOF
 	\@vars;
 }
 
-subtest "Chain benchmark" => fun() {
+subtest "Chain benchmark" => sub {
 	my $solver = Graphics::Layout::Kiwisolver::Solver->new;
 	my $vars = chain($solver, 1000);
 

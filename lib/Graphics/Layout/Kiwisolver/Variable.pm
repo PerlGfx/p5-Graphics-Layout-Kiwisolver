@@ -1,4 +1,5 @@
-use Renard::Incunabula::Common::Setup;
+use strict;
+use warnings;
 package Graphics::Layout::Kiwisolver::Variable;
 # ABSTRACT: Kiwisolver variable
 
