@@ -2,7 +2,8 @@
 
 use Test::Most tests => 1;
 
-use Renard::Incunabula::Common::Setup;
+use strict;
+use warnings;
 use Graphics::Layout::Kiwisolver;
 
 package Node {

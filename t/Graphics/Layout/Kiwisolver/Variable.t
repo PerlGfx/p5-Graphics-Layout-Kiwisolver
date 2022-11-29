@@ -2,7 +2,8 @@
 
 use Test::Most tests => 4;
 
-use Renard::Incunabula::Common::Setup;
+use strict;
+use warnings;
 use Graphics::Layout::Kiwisolver;
 use aliased 'Graphics::Layout::Kiwisolver::Variable';
 

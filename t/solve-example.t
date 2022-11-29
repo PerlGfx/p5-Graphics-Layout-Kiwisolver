@@ -4,7 +4,8 @@ use Test::Most;
 
 plan tests => 1;
 
-use Renard::Incunabula::Common::Setup;
+use strict;
+use warnings;
 use Graphics::Layout::Kiwisolver;
 use constant {
 	Variable => 'Graphics::Layout::Kiwisolver::Variable',
