@@ -32,14 +32,16 @@ package SolverWithCount {
 			_increment_count => 'inc',
 		}
 	);
-	method count() { ${ $self->_count } }
+	sub count { my $self = shift; ${ $self->_count } }
 
-	after addConstraint => method() {
+	after addConstraint => sub {
+		my $self = shift;
 		$self->_increment_count;
 	}
 }
 
-fun tree($solver, $depth, $context ) {
+sub tree {
+	my ($solver, $depth, $context) = @_;
 	my $node = Node->new;
 
 	$solver->addConstraint( $node->x >= $context->{inset} );
@@ -66,7 +68,8 @@ fun tree($solver, $depth, $context ) {
 	return $node;
 }
 
-fun depth_overlap($solver, $root, $sep) {
+sub depth_overlap {
+	my ($solver, $root, $sep) = @_;
 	my @q = ($root);
 	while(@q) {
 		@q = grep { defined } map { ( $_->left, $_->right ) } @q;
@@ -76,7 +79,7 @@ fun depth_overlap($solver, $root, $sep) {
 	}
 }
 
-subtest "Test" => fun() {
+subtest "Test" => sub {
 	my $solver = SolverWithCount->new;
 
 	my $context = {
@@ -127,7 +130,8 @@ subtest "Test" => fun() {
 };
 
 use SVG;
-fun draw($svg, $root) {
+sub draw {
+	my ($svg, $root) = @_;
 	my $r_sz = 4;
 	$svg->rectangle(
 		x => $root->x->value - $r_sz/2,

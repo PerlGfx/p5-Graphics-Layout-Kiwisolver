@@ -13,14 +13,15 @@ use constant {
 
 use lib 't/lib';
 
-fun var_list_to_hash(@vars) {
+sub var_list_to_hash {
+	my (@vars) = @_;
 	return +{ map {
 		die unless $_->name;
 		$_->name => $_->value;
 	} @vars };
 }
 
-subtest "Test solver" => fun() {
+subtest "Test solver" => sub {
 	# Example adapted from Kiwisolver documentation
 	# <https://kiwisolver.readthedocs.io/en/latest/basis/basic_systems.html>
 	# <https://github.com/nucleic/kiwi/blob/1.1.0/docs/source/basis/basic_systems.rst>

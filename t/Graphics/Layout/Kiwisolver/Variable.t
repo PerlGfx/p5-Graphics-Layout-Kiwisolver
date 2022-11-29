@@ -6,7 +6,7 @@ use Renard::Incunabula::Common::Setup;
 use Graphics::Layout::Kiwisolver;
 use aliased 'Graphics::Layout::Kiwisolver::Variable';
 
-subtest "Create variable" => fun() {
+subtest "Create variable" => sub {
 	my $x = Variable->new('x');
 	my $no_name = Variable->new;
 
@@ -17,7 +17,7 @@ subtest "Create variable" => fun() {
 	is $x->value, 42, 'check value';
 };
 
-subtest "Reference equality variables" => fun() {
+subtest "Reference equality variables" => sub {
 	my $x = Variable->new('x');
 	my $y = Variable->new('y');
 
@@ -25,7 +25,7 @@ subtest "Reference equality variables" => fun() {
 	ok !$x->equals($y), 'Are not equal';
 };
 
-subtest "Add operators" => fun() {
+subtest "Add operators" => sub {
 	my $x = Variable->new;
 	my $y = Variable->new;
 	$x->setValue(5);
@@ -34,7 +34,7 @@ subtest "Add operators" => fun() {
 	is $t->value, 11, 'add up values';
 };
 
-subtest "Stringify" => fun() {
+subtest "Stringify" => sub {
 	my $x = Variable->new('x');
 	$x->setValue(42);
 	my $whatever = Variable->new;

@@ -5,7 +5,7 @@ use Test::Most tests => 1;
 use Renard::Incunabula::Common::Setup;
 use Graphics::Layout::Kiwisolver;
 
-subtest "Test symbolics" => fun() {
+subtest "Test symbolics" => sub {
 	my $x = Graphics::Layout::Kiwisolver::Variable->new('x');
 	my $y = Graphics::Layout::Kiwisolver::Variable->new('y');
 	my $z = Graphics::Layout::Kiwisolver::Variable->new('z');

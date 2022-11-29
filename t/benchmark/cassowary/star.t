@@ -5,7 +5,8 @@ use Test::Most tests => 1;
 use Renard::Incunabula::Common::Setup;
 use Graphics::Layout::Kiwisolver;
 
-fun star($solver, $n, $z) {
+sub star {
+	my ($solver, $n, $z) = @_;
 	die unless $n >= 1;
 	my %vars;
 	note 'There are \(n\) required constraints \( x_i + z = y_i \).';
@@ -27,7 +28,7 @@ fun star($solver, $n, $z) {
 	\%vars;
 }
 
-subtest "Star benchmark" => fun() {
+subtest "Star benchmark" => sub {
 	my $solver = Graphics::Layout::Kiwisolver::Solver->new;
 	my $n = 100;
 	my $z = Graphics::Layout::Kiwisolver::Variable->new('z');
