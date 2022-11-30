@@ -4,9 +4,9 @@ include = CodeLayout::ProhibitSpaceIndentation CodeLayout::ProhibitTrailingWhite
 [-Subroutines::ProhibitSubroutinePrototypes]
 
 [TestingAndDebugging::RequireUseStrict]
-equivalent_modules = Modern::Perl Moo Moo::Role Renard::Incunabula::Common::Setup
+equivalent_modules = Modern::Perl Moo Moo::Role
 
 [TestingAndDebugging::RequireUseWarnings]
-equivalent_modules = Modern::Perl Moo Moo::Role Renard::Incunabula::Common::Setup
+equivalent_modules = Modern::Perl Moo Moo::Role
 
 # vim: ft=dosini

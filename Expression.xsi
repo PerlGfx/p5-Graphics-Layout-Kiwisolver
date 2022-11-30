@@ -6,11 +6,11 @@ MODE: INLINE
 namespace xs {
     template <>
     struct Typemap<kiwi::Expression*> : TypemapObject<kiwi::Expression*, kiwi::Expression*, ObjectTypePtr, ObjectStorageMG, StaticCast> {
-        static std::string package () { return "Intertangle::API::Kiwisolver::Expression"; }
+        static std::string package () { return "Graphics::Layout::Kiwisolver::Expression"; }
     };
 }
 
-MODULE = Intertangle::API::Kiwisolver                PACKAGE = Intertangle::API::Kiwisolver::Expression
+MODULE = Graphics::Layout::Kiwisolver                PACKAGE = Graphics::Layout::Kiwisolver::Expression
 PROTOTYPES: DISABLE
 
 std::vector<kiwi::Term*> kiwi::Expression::terms() {

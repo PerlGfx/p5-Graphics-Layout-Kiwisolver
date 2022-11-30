@@ -1,7 +1,8 @@
-use Renard::Incunabula::Common::Setup;
-package Intertangle::API::Kiwisolver::Strength;
+use strict;
+use warnings;
+package Graphics::Layout::Kiwisolver::Strength;
 # ABSTRACT: Constraint/Variable strength
-$Intertangle::API::Kiwisolver::Strength::VERSION = '0.001';
+$Graphics::Layout::Kiwisolver::Strength::VERSION = '0.002';
 
 1;
 
@@ -13,11 +14,11 @@ __END__
 
 =head1 NAME
 
-Intertangle::API::Kiwisolver::Strength - Constraint/Variable strength
+Graphics::Layout::Kiwisolver::Strength - Constraint/Variable strength
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 AUTHOR
 

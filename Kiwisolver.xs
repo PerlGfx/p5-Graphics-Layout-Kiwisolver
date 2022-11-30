@@ -5,11 +5,11 @@ using namespace xs;
 
 #include "Refcnt.xsi"
 
-MODULE = Intertangle::API::Kiwisolver                PACKAGE = Intertangle::API::Kiwisolver
+MODULE = Graphics::Layout::Kiwisolver                PACKAGE = Graphics::Layout::Kiwisolver
 PROTOTYPES: DISABLE
 
 BOOT {
-	Stash(__PACKAGE__, GV_ADD).mark_as_loaded("Intertangle::API::Kiwisolver");
+	Stash(__PACKAGE__, GV_ADD).mark_as_loaded("Graphics::Layout::Kiwisolver");
 }
 
 INCLUDE: Variable.xsi

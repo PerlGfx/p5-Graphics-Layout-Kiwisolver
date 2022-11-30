@@ -1,14 +1,13 @@
-use Renard::Incunabula::Common::Setup;
-package Intertangle::API::Kiwisolver::Expression;
-# ABSTRACT: Kiwisolver expression
-$Intertangle::API::Kiwisolver::Expression::VERSION = '0.001';
+use strict;
+use warnings;
+package Graphics::Layout::Kiwisolver::Term;
+# ABSTRACT: Kiwisolver term
+$Graphics::Layout::Kiwisolver::Term::VERSION = '0.002';
 use overload "fallback" => 0, '""' => \&stringify;
 
 sub stringify {
 	my ($self) = @_;
-	"(@{[ $self->constant ]} + "
-	.  join(" + ", map { "$_" } @{ $self->terms })
-	. " : @{[ $self->value ]})"
+	"(@{[ $self->coefficient ]} * @{[ $self->variable ]} : @{[ $self->value ]})"
 }
 
 1;
@@ -21,11 +20,11 @@ __END__
 
 =head1 NAME
 
-Intertangle::API::Kiwisolver::Expression - Kiwisolver expression
+Graphics::Layout::Kiwisolver::Term - Kiwisolver term
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 AUTHOR
 

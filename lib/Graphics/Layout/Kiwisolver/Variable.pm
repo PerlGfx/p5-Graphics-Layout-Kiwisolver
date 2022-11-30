@@ -1,7 +1,8 @@
-use Renard::Incunabula::Common::Setup;
-package Intertangle::API::Kiwisolver::Variable;
+use strict;
+use warnings;
+package Graphics::Layout::Kiwisolver::Variable;
 # ABSTRACT: Kiwisolver variable
-$Intertangle::API::Kiwisolver::Variable::VERSION = '0.001';
+$Graphics::Layout::Kiwisolver::Variable::VERSION = '0.002';
 use overload "fallback" => 0, '""' => \&stringify;
 
 sub stringify {
@@ -19,17 +20,11 @@ __END__
 
 =head1 NAME
 
-Intertangle::API::Kiwisolver::Variable - Kiwisolver variable
+Graphics::Layout::Kiwisolver::Variable - Kiwisolver variable
 
 =head1 VERSION
 
-version 0.001
-
-=head1 CLASS METHODS
-
-=head2 new
-
-TODO
+version 0.002
 
 =head1 METHODS
 
@@ -50,6 +45,10 @@ TODO
 TODO
 
 =head2 equals
+
+TODO
+
+=classmethod new
 
 TODO
 

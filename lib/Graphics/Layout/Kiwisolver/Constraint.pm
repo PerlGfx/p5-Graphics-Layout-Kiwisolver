@@ -1,7 +1,8 @@
-use Renard::Incunabula::Common::Setup;
-package Intertangle::API::Kiwisolver::Constraint;
+use strict;
+use warnings;
+package Graphics::Layout::Kiwisolver::Constraint;
 # ABSTRACT: Kiwisolver constraint
-$Intertangle::API::Kiwisolver::Constraint::VERSION = '0.001';
+$Graphics::Layout::Kiwisolver::Constraint::VERSION = '0.002';
 use overload "fallback" => 0, '""' => \&stringify;
 
 sub stringify {
@@ -20,11 +21,11 @@ __END__
 
 =head1 NAME
 
-Intertangle::API::Kiwisolver::Constraint - Kiwisolver constraint
+Graphics::Layout::Kiwisolver::Constraint - Kiwisolver constraint
 
 =head1 VERSION
 
-version 0.001
+version 0.002
 
 =head1 AUTHOR
 

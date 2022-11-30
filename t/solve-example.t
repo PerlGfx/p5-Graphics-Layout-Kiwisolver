@@ -4,23 +4,25 @@ use Test::Most;
 
 plan tests => 1;
 
-use Renard::Incunabula::Common::Setup;
-use Intertangle::API::Kiwisolver;
+use strict;
+use warnings;
+use Graphics::Layout::Kiwisolver;
 use constant {
-	Variable => 'Intertangle::API::Kiwisolver::Variable',
-	Solver => 'Intertangle::API::Kiwisolver::Solver'
+	Variable => 'Graphics::Layout::Kiwisolver::Variable',
+	Solver => 'Graphics::Layout::Kiwisolver::Solver'
 };
 
 use lib 't/lib';
 
-fun var_list_to_hash(@vars) {
+sub var_list_to_hash {
+	my (@vars) = @_;
 	return +{ map {
 		die unless $_->name;
 		$_->name => $_->value;
 	} @vars };
 }
 
-subtest "Test solver" => fun() {
+subtest "Test solver" => sub {
 	# Example adapted from Kiwisolver documentation
 	# <https://kiwisolver.readthedocs.io/en/latest/basis/basic_systems.html>
 	# <https://github.com/nucleic/kiwi/blob/1.1.0/docs/source/basis/basic_systems.rst>
@@ -37,9 +39,9 @@ subtest "Test solver" => fun() {
 		$solver->addConstraint($cn);
 	}
 
-	$solver->addConstraint( ($x1 == 40) | Intertangle::API::Kiwisolver::Strength::WEAK );
+	$solver->addConstraint( ($x1 == 40) | Graphics::Layout::Kiwisolver::Strength::WEAK );
 
-	$solver->addEditVariable($xm, Intertangle::API::Kiwisolver::Strength::STRONG );
+	$solver->addEditVariable($xm, Graphics::Layout::Kiwisolver::Strength::STRONG );
 
 	$solver->suggestValue($xm, 60);
 	$solver->updateVariables;
